@@ -1,0 +1,22 @@
+{
+  "name": "thalos-nodejs",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "author": "Henrik Hautakoski <henrik@eossweden.org>",
+  "license": "MIT",
+  "devDependencies": {
+    "@tsconfig/node14": "^1.0.3",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@redis/client": "^1.5.8"
+  }
+}
