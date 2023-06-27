@@ -18,20 +18,11 @@ export class Reader implements IReader {
     }
 
     async read(channel: Channel, handler : (message: any) => void): Promise<void> {
-
         const key = new Key(this.ns, channel)
-
-        //const conn = this.client.duplicate();
-        //await conn.connect()
-
-        console.log("Redis subscribe", key.toString())
-
-        //conn.subscribe(key.toString(), handler);
-
         this.client.subscribe(key.toString(), handler)
     }
 
     close() {
-
+        // Nothing to do here. we don't own the redis connection so we should not close it.
     }
 }
