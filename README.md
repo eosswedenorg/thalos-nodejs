@@ -5,7 +5,7 @@ Nodejs bindings for [thalos](https://github.com/eosswedenorg/thalos)
 ## Install
 
 ```sh
-npm install --save thalos-nodejs
+npm install --save @eosswedenorg/thalos-client
 ```
 
 ## Usage
