@@ -1,4 +1,4 @@
-# thalos-nodejs
+# Thalos Nodejs Client
 
 Nodejs bindings for [thalos](https://github.com/eosswedenorg/thalos)
 
@@ -13,7 +13,7 @@ npm install --save @eosswedenorg/thalos-client
 Pure javascript:
 
 ```js
-const thalos = require('thalos-nodejs');
+const thalos = require('@eosswedenorg/thalos-client');
 
 // Create client.
 const client = thalos.createRedisClient({
@@ -31,7 +31,7 @@ client.onHeartbeat(hb => {
 With typescript:
 
 ```ts
-import * as thalos from 'thalos-nodejs';
+import * as thalos from '@eosswedenorg/thalos-client';
 
 // Create client.
 const client = thalos.createRedisClient({
