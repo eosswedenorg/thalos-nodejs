@@ -1,7 +1,7 @@
 {
-  "name": "thalos-nodejs",
+  "name": "@eosswedenorg/thalos-client",
   "version": "0.1.0",
-  "description": "",
+  "description": "Nodejs bindings for [thalos](https://github.com/eosswedenorg/thalos)",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
@@ -18,5 +18,13 @@
   },
   "dependencies": {
     "@redis/client": "^1.5.8"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eosswedenorg/thalos-nodejs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eosswedenorg/thalos-nodejs/issues"
+  },
+  "homepage": "https://github.com/eosswedenorg/thalos-nodejs#readme"
 }
