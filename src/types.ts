@@ -59,3 +59,21 @@ export interface ActionTrace {
     error : string;
     return : Uint8Array;
 }
+
+export interface RollbackMessage {
+	new_block : number;
+	old_block : number;
+}
+
+export interface TableDeltaRows {
+	present : boolean;
+	data : any;
+	raw_data: string;
+}
+
+export interface TableDelta {
+	blocknum : number;
+	blocktimestamp : Date;
+	name : string;
+	rows : TableDeltaRows[];
+}
