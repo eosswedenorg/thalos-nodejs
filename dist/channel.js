@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TransactionChannel = exports.HeartBeatChannel = exports.ActionChannel = exports.BaseChannel = exports.Channel = void 0;
+exports.RollbackChannel = exports.TransactionChannel = exports.HeartBeatChannel = exports.TableDeltaChannel = exports.ActionChannel = exports.BaseChannel = exports.Channel = void 0;
 class Channel {
     constructor() {
         Object.defineProperty(this, "toString", {
@@ -73,6 +73,33 @@ class ActionChannel extends Channel {
     }
 }
 exports.ActionChannel = ActionChannel;
+class TableDeltaChannel extends Channel {
+    constructor(name) {
+        super();
+        Object.defineProperty(this, "name", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "type", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: () => "tabledeltas"
+        });
+        this.name = name;
+    }
+    format(delimiter) {
+        const items = ["tabledeltas"];
+        if (this.name && this.name.length > 0) {
+            items.push("name", this.name);
+        }
+        return items.join(delimiter);
+    }
+}
+exports.TableDeltaChannel = TableDeltaChannel;
 // Static channels.
 exports.HeartBeatChannel = new BaseChannel("heartbeat");
 exports.TransactionChannel = new BaseChannel("transactions");
+exports.RollbackChannel = new BaseChannel("rollback");

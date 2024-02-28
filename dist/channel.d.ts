@@ -20,5 +20,12 @@ export declare class ActionChannel extends Channel {
     type: () => string;
     format(delimiter: string): string;
 }
+export declare class TableDeltaChannel extends Channel {
+    name?: string;
+    constructor(name?: string);
+    type: () => string;
+    format(delimiter: string): string;
+}
 export declare const HeartBeatChannel: Channel;
 export declare const TransactionChannel: Channel;
+export declare const RollbackChannel: Channel;

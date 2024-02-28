@@ -60,6 +60,27 @@ export class ActionChannel extends Channel {
 
 }
 
+export class TableDeltaChannel extends Channel {
+	public name ?: string;
+	
+	constructor(name ?: string) {
+		super()
+		this.name = name;
+	}
+	type = () => "tabledeltas";
+
+	format(delimiter: string): string {
+        const items:string[] = ["tabledeltas"]
+
+        if (this.name && this.name.length > 0) {
+            items.push("name", this.name);
+        }
+
+        return items.join(delimiter)
+    }
+}
+
 // Static channels.
 export const HeartBeatChannel:Channel = new BaseChannel("heartbeat")
 export const TransactionChannel:Channel = new BaseChannel("transactions")
+export const RollbackChannel:Channel = new BaseChannel("rollback")
