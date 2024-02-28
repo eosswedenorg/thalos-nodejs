@@ -1,11 +1,13 @@
 
-import { HeartBeat, ActionTrace, TransactionTrace } from './types';
+import { HeartBeat, ActionTrace, TransactionTrace, RollbackMessage, TableDelta } from './types';
 import { IReader } from './reader';
-import { Channel, HeartBeatChannel, TransactionChannel, ActionChannel, ActionChannelParams } from './channel';
+import { Channel, HeartBeatChannel, TransactionChannel, ActionChannel, ActionChannelParams, RollbackChannel, TableDeltaChannel } from './channel';
 
 export type HeartBeatHandler = (hb: HeartBeat) => void
 export type ActionTraceHandler = (action : ActionTrace) => void
 export type TransactionTraceHandler = (trace : TransactionTrace) => void
+export type TableDeltaHandler = (tableDelta: TableDelta) => void
+export type RollbackHandler = (rollback: RollbackMessage) => void
 
 type decoderFn = (msg:any) => any;
 
@@ -45,4 +47,24 @@ export class Client {
         }
         return this;
     }
+
+	async onDeltaTable(channels: string | string[] | null, handler: TableDeltaHandler) : Promise<Client> {
+
+		if (channels === null) {
+			return this.subscribe(new TableDeltaChannel(), handler);
+		}
+
+		if (!(channels instanceof Array)) {
+			channels = [ channels ]
+		}
+
+		for (const ch of channels) {
+			this.subscribe(new TableDeltaChannel(ch), handler);
+		}
+		return this;
+	}
+
+	async onRollback(handler: RollbackHandler) : Promise<Client> {
+		return this.subscribe(RollbackChannel, handler);
+	}
 }

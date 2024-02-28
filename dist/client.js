@@ -40,5 +40,20 @@ class Client {
         }
         return this;
     }
+    async onDeltaTable(channels, handler) {
+        if (channels === null) {
+            return this.subscribe(new channel_1.TableDeltaChannel(), handler);
+        }
+        if (!(channels instanceof Array)) {
+            channels = [channels];
+        }
+        for (const ch of channels) {
+            this.subscribe(new channel_1.TableDeltaChannel(ch), handler);
+        }
+        return this;
+    }
+    async onRollback(handler) {
+        return this.subscribe(channel_1.RollbackChannel, handler);
+    }
 }
 exports.Client = Client;
